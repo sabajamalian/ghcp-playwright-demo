@@ -1,0 +1,54 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - complementary [ref=e2]:
+    - heading "Taskflow" [level=1] [ref=e4]:
+      - img [ref=e6]
+      - text: Taskflow
+    - generic [ref=e9]:
+      - textbox [ref=e14]:
+        - /placeholder: New list name…
+      - button "Add List" [ref=e16] [cursor=pointer]:
+        - generic:
+          - generic:
+            - img
+        - generic [ref=e17]: Add List
+    - separator [ref=e18]
+    - navigation [ref=e19]:
+      - button "Enter Test 0" [ref=e20] [cursor=pointer]:
+        - img [ref=e22]
+        - generic [ref=e24]: Enter Test
+        - generic [ref=e25]: "0"
+  - main [ref=e26]:
+    - generic [ref=e27]:
+      - generic [ref=e28]:
+        - generic [ref=e29]:
+          - heading "Enter Test" [level=2] [ref=e30]
+          - status [ref=e32]:
+            - generic: 0 / 0
+        - generic [ref=e33]:
+          - button "Rename list" [ref=e35] [cursor=pointer]:
+            - generic:
+              - img
+          - button "Delete list" [ref=e37] [cursor=pointer]:
+            - generic:
+              - img
+      - generic [ref=e38]:
+        - textbox [ref=e43]:
+          - /placeholder: What needs to be done?
+        - button "Add" [ref=e45] [cursor=pointer]:
+          - generic:
+            - generic:
+              - img
+          - generic [ref=e46]: Add
+      - separator [ref=e47]
+      - list
+      - generic [ref=e48]:
+        - img [ref=e50]
+        - paragraph [ref=e53]: No tasks yet. Add one above!
+  - generic: Cancel
+  - generic: Rename
+  - generic: Cancel
+  - generic: Delete
+```

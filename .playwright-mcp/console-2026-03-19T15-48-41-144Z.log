@@ -1,0 +1,4 @@
+[     420ms] [ERROR] Failed to load resource: the server responded with a status of 404 (NOT FOUND) @ http://localhost:3003/favicon.ico:0
+[ 1513519ms] [ERROR] Failed to load resource: the server responded with a status of 404 (NOT FOUND) @ http://localhost:3003/api/lists/dc579df50cd3:0
+[ 1517672ms] [ERROR] Failed to load resource: the server responded with a status of 404 (NOT FOUND) @ http://localhost:3003/favicon.ico:0
+[ 1517982ms] [ERROR] Failed to load resource: the server responded with a status of 404 (NOT FOUND) @ http://localhost:3003/favicon.ico:0

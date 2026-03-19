@@ -1,0 +1,15 @@
+{
+  "name": "ghcp-playwright-demo",
+  "version": "1.0.0",
+  "description": "A demo repository to show the power of the Playwright MCP when testing UI workflows using GitHub Copilot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2"
+  }
+}

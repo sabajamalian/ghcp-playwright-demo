@@ -1,0 +1,427 @@
+/* ── Prevent FOUC for Shoelace ────────────────────────────────── */
+:not(:defined) {
+  visibility: hidden;
+}
+
+/* ── CSS Variables / Tokens ──────────────────────────────────── */
+:root {
+  --color-bg: #f4f5f7;
+  --color-surface: #ffffff;
+  --color-sidebar: #1e1e2e;
+  --color-sidebar-hover: #2a2a3e;
+  --color-sidebar-active: #363652;
+  --color-sidebar-text: #cdd6f4;
+  --color-sidebar-muted: #7f849c;
+  --color-accent: #7c3aed;
+  --color-accent-light: #a78bfa;
+  --color-danger: #ef4444;
+  --color-text: #1e293b;
+  --color-text-muted: #64748b;
+  --color-border: #e2e8f0;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
+  --transition: 0.2s ease;
+  --sidebar-width: 300px;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ── Reset ───────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  display: flex;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────── */
+.sidebar {
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  background: var(--color-sidebar);
+  color: var(--color-sidebar-text);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+  position: sticky;
+  top: 0;
+}
+
+.sidebar-header {
+  padding: 24px 20px 8px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.logo-icon {
+  font-size: 1.5rem;
+  color: var(--color-accent-light);
+}
+
+.sidebar-actions {
+  padding: 12px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-actions sl-input::part(base) {
+  background: var(--color-sidebar-hover);
+  border-color: transparent;
+  color: #fff;
+  border-radius: var(--radius-sm);
+}
+
+.sidebar-actions sl-input::part(input) {
+  color: #fff;
+}
+
+.sidebar-actions sl-input::part(base):focus-within {
+  border-color: var(--color-accent-light);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.25);
+}
+
+.sidebar-actions sl-button::part(base) {
+  border-color: var(--color-accent-light);
+  color: var(--color-accent-light);
+  border-radius: var(--radius-sm);
+}
+
+.sidebar-actions sl-button::part(base):hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #fff;
+}
+
+.sidebar sl-divider {
+  --color: rgba(255, 255, 255, 0.08);
+  margin: 4px 20px;
+}
+
+/* ── List nav ────────────────────────────────────────────────── */
+.list-nav {
+  flex: 1;
+  padding: 4px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow-y: auto;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition);
+  font-size: 0.925rem;
+  font-weight: 500;
+  color: var(--color-sidebar-text);
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+.list-item:hover {
+  background: var(--color-sidebar-hover);
+}
+
+.list-item.active {
+  background: var(--color-sidebar-active);
+  color: #fff;
+}
+
+.list-item .list-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.list-item .task-count {
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-sidebar-muted);
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.list-item.active .task-count {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--color-accent-light);
+}
+
+/* ── Empty states ────────────────────────────────────────────── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 8px;
+  padding: 40px 20px;
+  color: var(--color-text-muted);
+}
+
+.sidebar-empty {
+  color: var(--color-sidebar-muted);
+  padding: 32px 20px;
+}
+
+.main-empty {
+  flex: 1;
+  gap: 12px;
+}
+
+.main-empty h2 {
+  font-size: 1.25rem;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.empty-icon {
+  font-size: 2rem;
+  opacity: 0.5;
+}
+
+.empty-icon-lg {
+  font-size: 3rem;
+  opacity: 0.3;
+  color: var(--color-accent);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ── Main Panel ──────────────────────────────────────────────── */
+.main-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 32px 40px;
+  overflow-y: auto;
+}
+
+/* ── Task Header ─────────────────────────────────────────────── */
+.task-view {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  animation: fadeIn 0.3s ease;
+}
+
+.task-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.task-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.task-list-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.task-header-right {
+  display: flex;
+  gap: 4px;
+}
+
+.task-header-right sl-icon-button::part(base) {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  transition: color var(--transition);
+}
+
+.task-header-right sl-icon-button::part(base):hover {
+  color: var(--color-accent);
+}
+
+.danger-icon::part(base):hover {
+  color: var(--color-danger) !important;
+}
+
+/* ── Add task row ────────────────────────────────────────────── */
+.add-task-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.add-task-row sl-input {
+  flex: 1;
+}
+
+.add-task-row sl-input::part(base) {
+  border-radius: var(--radius-sm);
+  border-color: var(--color-border);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.add-task-row sl-input::part(base):focus-within {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+}
+
+.add-task-row sl-button::part(base) {
+  border-radius: var(--radius-sm);
+}
+
+.main-panel sl-divider {
+  --color: var(--color-border);
+  margin: 8px 0;
+}
+
+/* ── Task List ───────────────────────────────────────────────── */
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition), opacity var(--transition);
+  animation: slideIn 0.25s ease;
+}
+
+.task-item:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.task-item sl-checkbox {
+  --sl-toggle-size-medium: 22px;
+}
+
+.task-item sl-checkbox::part(control) {
+  border-radius: 6px;
+}
+
+.task-item sl-checkbox::part(control--checked) {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.task-title {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color var(--transition), opacity var(--transition);
+}
+
+.task-title.completed {
+  text-decoration: line-through;
+  color: var(--color-text-muted);
+  opacity: 0.6;
+}
+
+.task-item sl-icon-button::part(base) {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  opacity: 0;
+  transition: opacity var(--transition), color var(--transition);
+}
+
+.task-item:hover sl-icon-button::part(base) {
+  opacity: 1;
+}
+
+.task-item sl-icon-button::part(base):hover {
+  color: var(--color-danger);
+}
+
+.tasks-empty {
+  padding: 60px 20px;
+}
+
+/* ── Dialogs ─────────────────────────────────────────────────── */
+sl-dialog::part(panel) {
+  border-radius: var(--radius);
+}
+
+sl-dialog sl-input::part(base) {
+  border-radius: var(--radius-sm);
+}
+
+/* ── Animations ──────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes taskRemove {
+  to { opacity: 0; transform: translateX(20px); height: 0; padding: 0; margin: 0; overflow: hidden; }
+}
+
+.task-item.removing {
+  animation: taskRemove 0.3s ease forwards;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    min-width: 100%;
+    height: auto;
+    position: relative;
+    max-height: 40vh;
+  }
+  .main-panel {
+    padding: 20px;
+    min-height: auto;
+  }
+}

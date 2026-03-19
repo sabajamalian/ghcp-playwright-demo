@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taskflow — Elegant To-Do Lists</title>
+
+  <!-- Shoelace -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
+
+  <!-- App styles -->
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+
+  <!-- ─── Sidebar ─────────────────────────────────────────────── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h1 class="logo">
+        <sl-icon name="check2-square" class="logo-icon"></sl-icon>
+        Taskflow
+      </h1>
+    </div>
+
+    <div class="sidebar-actions">
+      <sl-input id="new-list-input" placeholder="New list name…" size="small" clearable></sl-input>
+      <sl-button id="add-list-btn" variant="primary" size="small" outline>
+        <sl-icon slot="prefix" name="plus-lg"></sl-icon>
+        Add List
+      </sl-button>
+    </div>
+
+    <sl-divider></sl-divider>
+
+    <nav id="list-nav" class="list-nav">
+      <!-- Lists rendered here -->
+    </nav>
+
+    <div id="sidebar-empty" class="empty-state sidebar-empty hidden">
+      <sl-icon name="journal-text" class="empty-icon"></sl-icon>
+      <p>No lists yet.<br />Create your first one above!</p>
+    </div>
+  </aside>
+
+  <!-- ─── Main Panel ──────────────────────────────────────────── -->
+  <main class="main-panel" id="main-panel">
+
+    <!-- Nothing selected state -->
+    <div id="no-selection" class="empty-state main-empty">
+      <sl-icon name="arrow-left-circle" class="empty-icon-lg"></sl-icon>
+      <h2>Select a list</h2>
+      <p>Pick a list from the sidebar to see its tasks.</p>
+    </div>
+
+    <!-- Task view (hidden by default) -->
+    <div id="task-view" class="task-view hidden">
+      <header class="task-header">
+        <div class="task-header-left">
+          <h2 id="task-list-name" class="task-list-name"></h2>
+          <sl-badge id="task-count-badge" variant="neutral" pill></sl-badge>
+        </div>
+        <div class="task-header-right">
+          <sl-icon-button id="rename-list-btn" name="pencil-square" label="Rename list"></sl-icon-button>
+          <sl-icon-button id="delete-list-btn" name="trash3" label="Delete list" class="danger-icon"></sl-icon-button>
+        </div>
+      </header>
+
+      <div class="add-task-row">
+        <sl-input id="new-task-input" placeholder="What needs to be done?" size="medium" clearable></sl-input>
+        <sl-button id="add-task-btn" variant="primary" size="medium">
+          <sl-icon slot="prefix" name="plus-lg"></sl-icon>
+          Add
+        </sl-button>
+      </div>
+
+      <sl-divider></sl-divider>
+
+      <ul id="task-list" class="task-list">
+        <!-- Tasks rendered here -->
+      </ul>
+
+      <div id="tasks-empty" class="empty-state tasks-empty hidden">
+        <sl-icon name="clipboard2" class="empty-icon"></sl-icon>
+        <p>No tasks yet. Add one above!</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ─── Rename Dialog ───────────────────────────────────────── -->
+  <sl-dialog id="rename-dialog" label="Rename List">
+    <sl-input id="rename-input" placeholder="New name…"></sl-input>
+    <sl-button slot="footer" id="rename-cancel-btn" variant="default">Cancel</sl-button>
+    <sl-button slot="footer" id="rename-confirm-btn" variant="primary">Rename</sl-button>
+  </sl-dialog>
+
+  <!-- ─── Delete Confirmation Dialog ──────────────────────────── -->
+  <sl-dialog id="delete-dialog" label="Delete List">
+    <p>Are you sure you want to delete <strong id="delete-list-name"></strong> and all its tasks?</p>
+    <sl-button slot="footer" id="delete-cancel-btn" variant="default">Cancel</sl-button>
+    <sl-button slot="footer" id="delete-confirm-btn" variant="danger">Delete</sl-button>
+  </sl-dialog>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
