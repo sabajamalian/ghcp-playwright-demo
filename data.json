@@ -16,6 +16,25 @@
           "title": "Eggs",
           "completed": false,
           "created_at": "2026-03-23T17:32:41.353679+00:00"
+        },
+        {
+          "id": "e2202c81f4bc",
+          "title": "Bread",
+          "completed": true,
+          "created_at": "2026-03-26T19:35:28.418236+00:00"
+        }
+      ]
+    },
+    {
+      "id": "1de903cbef12",
+      "name": "Shopping",
+      "created_at": "2026-03-26T19:34:44.531790+00:00",
+      "tasks": [
+        {
+          "id": "cee0206e2734",
+          "title": "Buy groceries",
+          "completed": false,
+          "created_at": "2026-03-26T19:34:51.190327+00:00"
         }
       ]
     }
